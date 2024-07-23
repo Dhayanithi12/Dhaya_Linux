@@ -22,7 +22,7 @@ To comply with directives from Mr. Penny Johnson, CTO, we implemented file acces
 ```bash
 Copy code
 sudo mkdir -p /project-directory
-sudo mv /path/to/noida.txt /project-directory/ ```
+sudo mv /path/to/noida.txt /project-directory/
 
 ## Set Up File Access Control List (FACL):
 
