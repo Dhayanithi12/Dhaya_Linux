@@ -19,11 +19,12 @@ To comply with directives from Mr. Penny Johnson, CTO, we implemented file acces
 
 2. Move the File to a Designated Directory:
 
-bash
+```bash
 Copy code
 sudo mkdir -p /project-directory
-sudo mv /path/to/noida.txt /project-directory/
-Set Up File Access Control List (FACL):
+sudo mv /path/to/noida.txt /project-directory/ ```
+
+## Set Up File Access Control List (FACL):
 
 bash
 Copy code
