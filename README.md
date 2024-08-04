@@ -34,7 +34,11 @@ This report outlines the steps and results of implementing file access control m
 - **Verification**: Mr. Johnson successfully accessed the file, while other users were denied access.
 - **Outcome**: Demonstrated that Mr. Penny Johnson had access, and no other user could access the file, ensuring project confidentiality.
 
-![Access Control Results](https://github.com/user-attachments/assets/verification_results.png)
+<img width="640" alt="image" src="https://github.com/user-attachments/assets/c0ed3f0e-ad89-4685-963f-8429a04db5ab">
+
+<img width="640" alt="image" src="https://github.com/user-attachments/assets/b27f6d82-62f6-4ee7-8bc7-7b2ade45e518">
+
+
 
 ---
 
@@ -83,6 +87,10 @@ This report outlines the steps and results of implementing file access control m
 ### Results
 
 - **Verification**: Access integrity was confirmed, and screenshots of permissions and access controls were uploaded.
+
+  <img width="503" alt="image" src="https://github.com/user-attachments/assets/666f0738-9ac2-4b06-a9ec-b568cd40e56e">
+
+  
 
 ![Permissions Adjustment Results](https://github.com/user-attachments/assets/permissions_results.png)
 
