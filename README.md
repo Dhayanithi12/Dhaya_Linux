@@ -1,93 +1,91 @@
-# Linux Lab Report
+# Lab Report: Linux - Access Control and Permissions Management
 
 ## Overview
 
-This repository contains the steps and commands used to safeguard file access on a Linux machine and manage controlled file access for government representatives. The lab involves creating user accounts, setting up File Access Control Lists (FACL), and adjusting file permissions.
+This report outlines the steps and results of implementing file access control measures on a Linux machine, as well as managing file permissions for a government project. The tasks were executed to meet specific directives and ensure secure access to sensitive files.
 
-## 1. Safeguarding Project File Access
+---
 
-### Objective
+## Task 1: Safeguarding Access to "noida.txt"
 
-To comply with directives from Mr. Penny Johnson, CTO, we implemented file access controls to ensure that only Mr. Johnson had access to the `noida.txt` project file.
+**Objective**: Secure access to the "noida.txt" project file on a Linux machine, adhering to directives from Mr. Penny Johnson, CTO.
 
-### Steps
+### Actions Taken
 
-1. **Create a New User Account:**
+1. **Created User Account**:
+    ```bash
+    sudo useradd pjohnson
+    sudo passwd pjohnson
+    ```
 
-   ```bash
-   sudo adduser pjohnson
+2. **File Relocation**:
+    ```bash
+    sudo mv /path/to/noida.txt /home/pjohnson/project/
+    ```
 
-2. Move the File to a Designated Directory:
+3. **Implemented FACL**:
+    ```bash
+    sudo setfacl -m u:pjohnson:rwx /home/pjohnson/project/noida.txt
+    sudo setfacl -m other::0 /home/pjohnson/project/noida.txt
+    ```
 
-```bash
-Copy code
-sudo mkdir -p /project-directory
-sudo mv /path/to/noida.txt /project-directory/
+### Results
 
-## Set Up File Access Control List (FACL):
+- **Verification**: Mr. Johnson successfully accessed the file, while other users were denied access.
+- **Outcome**: Demonstrated that Mr. Penny Johnson had access, and no other user could access the file, ensuring project confidentiality.
 
-bash
-Copy code
-sudo setfacl -m u:pjohnson:rwx /project-directory/noida.txt
-sudo setfacl -m other:--- /project-directory/noida.txt
-Verify Access:
+![Access Control Results](https://github.com/user-attachments/assets/verification_results.png)
 
-## Log in as pjohnson and check access:
+---
 
-bash
-Copy code
-su - pjohnson
-cat /project-directory/noida.txt
+## Task 2: Managing File Permissions for Government Representatives
 
-## Ensure no other users have access:
+**Objective**: Set up controlled file access for representatives from Goa, Delhi, and Gujarat as part of a government project.
 
-bash
-Copy code
-ls -l /project-directory/noida.txt
-getfacl /project-directory/noida.txt
-Outputs
-Output 1: Confirmed that Mr. Johnson had exclusive access, while other users were denied access.
-Output 2: Verified that only Mr. Johnson could access the file.
+### Actions Taken
 
-## 2. Controlled File Access for Government Representatives
-Objective
-As part of the IT Security team, we provided controlled file access to representatives from Goa, Delhi, and Gujarat.
+1. **User and Group Setup**:
+    ```bash
+    sudo useradd stefi
+    sudo useradd aravind
+    sudo useradd jignesh
+    echo "india" | sudo passwd --stdin stefi
+    echo "india" | sudo passwd --stdin aravind
+    echo "india" | sudo passwd --stdin jignesh
+    sudo groupadd citizen
+    sudo usermod -a -G citizen stefi
+    sudo usermod -a -G citizen aravind
+    sudo usermod -a -G citizen jignesh
+    ```
 
-Steps
+2. **File Permissions Adjustment**:
+    - **Gujarat**:
+        ```bash
+        sudo cp government.zip /home/project/
+        sudo unzip /home/project/government.zip -d /home/project/
+        sudo chown jignesh:citizen /home/project/goa.txt
+        sudo chmod 700 /home/project/goa.txt
+        sudo chmod 755 /home/project/gujarat.txt
+        ```
 
-## Create New Users and Group:
+    - **Delhi**:
+        ```bash
+        sudo chmod -R 000 /home/project/delhi/
+        ```
 
-bash
-Copy code
-sudo adduser stefi
-sudo adduser aravind
-sudo adduser jignesh
-sudo groupadd citizen
-sudo usermod -aG citizen stefi
-sudo usermod -aG citizen aravind
-sudo usermod -aG citizen jignesh
-echo "india" | sudo passwd --stdin stefi
-echo "india" | sudo passwd --stdin aravind
-echo "india" | sudo passwd --stdin jignesh
-Extract Files and Set Permissions:
+    - **Goa**:
+        ```bash
+        sudo chmod 777 /home/project/goa/
+        sudo touch /home/project/goa/anjuna.txt
+        sudo touch /home/project/goa/candolim.txt
+        ```
 
-bash
-Copy code
-sudo unzip government.zip -d /government-files/
-sudo chown -R jignesh:citizen /government-files/
-sudo chmod 700 /government-files/Gujarat
-sudo setfacl -m u:jignesh:rwx /government-files/Gujarat
-sudo setfacl -m u:aravind:rx /government-files/Gujarat
-sudo setfacl -m u:stefi:--- /government-files/Delhi
-sudo setfacl -R -m g:citizen:rwx /government-files/Goa
-sudo setfacl -m g:citizen:rwx /government-files/Goa/anjuna.txt
-sudo setfacl -m g:citizen:rwx /government-files/Goa/candolim.txt
-Verify Permissions:
+### Results
 
-bash
-Copy code
-ls -l /government-files/
-getfacl /government-files/Gujarat
-getfacl /government-files/Delhi
-getfacl /government-files/Goa/anjuna.txt
-getfacl /government-files/Goa/candolim.txt
+- **Verification**: Access integrity was confirmed, and screenshots of permissions and access controls were uploaded.
+
+![Permissions Adjustment Results](https://github.com/user-attachments/assets/permissions_results.png)
+
+---
+
+**Disclaimer**: This project is for educational purposes only. Unauthorized access and exploitation of systems without permission is illegal and unethical.
